@@ -1,4 +1,10 @@
 {
-  "UserName": "Taghreed Saeed",
-  "Email": "TaghreeddSaeedd145@gmail.com"
+  "SignUp": {
+    "UserName": "Taghreed Saeed",
+    "Email": "TaghreeddSaeedd5595@gmail.com"
+  },
+  "Login": {
+    "Email": "TaghreeddSaeedd55@gmail.com",
+    "Password": "tagsa221"
+  }
 }

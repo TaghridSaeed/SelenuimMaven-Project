@@ -20,8 +20,8 @@ public class Tests {
 
     @BeforeMethod
     public void SetUp() {
-        driver = DriverFactory.initiateDriver();
-        //        driver = DriverFactory.initiateDriver(System.getProperty("browserName"), true,true);
+//        driver = DriverFactory.initiateDriver();
+        driver = DriverFactory.initiateDriver(System.getProperty("browserName"), true, false);
         testData = new JsonFileManager("src/test/resources/TestDataJsonFiles/SignUpTestsJsonFile.json");
     }
 
@@ -34,7 +34,7 @@ public class Tests {
         new MainMenu(driver).clickOnSignupButton();
         new SignupPage(driver)
 //                .assertSignupPage()
-                .SignupNewUser(testData.getTestData("UserName"), testData.getTestData("Email"));
+                .SignupNewUser(testData.getTestData("SignUp.UserName"), testData.getTestData("SignUp.Email"));
         new EnterAccountInformation(driver).assertSignupPage()
                 .selectSubscriptionOptions("offersCheckbox")
                 .enterAccountInformation("tagsa221", "22", "January", "2002", "Female")
@@ -47,11 +47,34 @@ public class Tests {
 
     }
 
+    @Test(description = "Login")
+    @Description("Login TestCase")
+    public void login() {
+        new HomePage(driver)
+                .navigate()
+                .assertHomePage();
+        new MainMenu(driver).clickOnSignupButton();
+        new SignupPage(driver)
+                .SignupNewUser(testData.getTestData("SignUp.UserName"), testData.getTestData("Login.Email"));
+        new EnterAccountInformation(driver).assertSignupPage()
+                .selectSubscriptionOptions("offersCheckbox")
+                .enterAccountInformation("tagsa221", "22", "January", "2002", "Female")
+                .EnterAddressInformation("Taghreed", "Saeed", "Giza Systems", "ahmed shawky,banafseg 10 ", "United States", "USA", "cairo", "19989", "01020345966");
+        new AccountCreated(driver).AssertAccountCreated()
+                .ClickOnContinueButton();
+        new MainMenu(driver).clickOnLogOutButton();
+        new SignupPage(driver).Login(testData.getTestData("Login.Email"), testData.getTestData("Login.Password"));
+        new MainMenu(driver).AsserOnLoggedinAsUsername();
+        new MainMenu(driver).ClickDeleteAccButton();
+        new AccountDeleted(driver).AssertAccountDeleted();
+
+    }
+
 
     @AfterMethod
     public void tearDown() {
 
-        driver.quit();
+//        driver.quit();
 
     }
 }

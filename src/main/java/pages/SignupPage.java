@@ -17,6 +17,9 @@ public class SignupPage {
     private By signupname = By.xpath("//input[@data-qa='signup-name']");
     private By signupemail = By.xpath("//input[@data-qa='signup-email']");
     private By signupbutton = By.xpath("//button[@data-qa='signup-button']");
+    private By LoginPassword = By.xpath("//input[@data-qa='login-password']");
+    private By  Loginemail = By.xpath("//input[@data-qa='login-email']");
+    private By  Loginbutton = By.xpath("//button[@data-qa='login-button']");
 
     /// //Actions/////
     public SignupPage SignupNewUser(String name, String email) {
@@ -25,6 +28,13 @@ public class SignupPage {
         driver.findElement(signupbutton).click();
         return this;
     }
+    public SignupPage Login(String Password, String email) {
+        driver.findElement(Loginemail).sendKeys(Password);
+        driver.findElement(LoginPassword).sendKeys(email);
+        driver.findElement(Loginbutton).click();
+        return this;
+    }
+
     public SignupPage assertSignupPage()
     {
         Assert.assertEquals((driver.findElement(TextINSignupPage).getText()), "New User Signup!");
