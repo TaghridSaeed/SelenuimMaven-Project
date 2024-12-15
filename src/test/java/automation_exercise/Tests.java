@@ -1,6 +1,7 @@
 package automation_exercise;
 
 import jdk.jfr.Description;
+import org.testng.Assert;
 import pages.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
@@ -67,6 +68,48 @@ public class Tests {
         new MainMenu(driver).AsserOnLoggedinAsUsername();
         new MainMenu(driver).ClickDeleteAccButton();
         new AccountDeleted(driver).AssertAccountDeleted();
+
+    }
+
+    @Test(description = "Products")
+    @Description("Product TestCase")
+    public void VerifyAllProductsANDProductDetailPage() {
+        new HomePage(driver)
+                .navigate()
+                .assertHomePage();
+        new MainMenu(driver).clickOnProductsButton();
+        new ProductsPage(driver)
+//                .AsserOnProductsPageURL()
+                .clickOnViewProductButton();
+        new ProductsDetailsPage(driver).AsserOnProductsDetails();
+
+    }
+
+    @Test(description = "Search")
+    @Description("Search On Product TestCase")
+    public void SearchOnProduct() {
+        new HomePage(driver)
+                .navigate()
+                .assertHomePage();
+        new MainMenu(driver).clickOnProductsButton();
+        new ProductsPage(driver).SearchOnproduct()
+                .AssertSearchedProducts();
+    }
+
+
+    @Test(description = "ADD to Cart")
+    @Description("Add Products in Cart")
+    public void AddProductsinCart() {
+        new HomePage(driver)
+                .navigate()
+                .assertHomePage();
+        new MainMenu(driver).clickOnProductsButton();
+        new ProductsPage(driver).clickOnAddToCartButton1()
+                .clickOnContinueShoppingbutton1()
+                .clickOnAddToCartButton2()
+                .clickOnViewCartButton();
+        new ShoppingCart(driver).AsserOnProduct1inCart()
+                .AsserOnProduct2inCart();
 
     }
 

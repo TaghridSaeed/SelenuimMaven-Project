@@ -15,6 +15,7 @@ public class MainMenu {
     private By DeleteAccButton = By.xpath("//a[@href='/delete_account']");
     private By Logoutbutton = By.xpath("//a[@href='/logout']");
     private By LoginTextToVerify = By.xpath("//li/a[text()=' Logged in as ']");
+    private By Productsbutton = By.xpath("//a[@href='/products']");
 
     /// / Actions/////
     public MainMenu(WebDriver driver) {
@@ -23,7 +24,6 @@ public class MainMenu {
 
     @Step("Click On SignupButton")
     public void clickOnSignupButton() {
-//        driver.findElement(Loginbutton).click();
         ElementActions.click(driver, Loginbutton);
     }
 
@@ -34,9 +34,13 @@ public class MainMenu {
 
     @Step("Click On DeleteAccount Button")
     public MainMenu ClickDeleteAccButton() {
-//        driver.findElement(DeleteAccButton).click();
         ElementActions.click(driver, DeleteAccButton);
         return this;
+    }
+
+    @Step("Click On ProductsButton")
+    public void clickOnProductsButton() {
+        ElementActions.click(driver, Productsbutton);
     }
 
     @Step("Assert On LogOut Button")
