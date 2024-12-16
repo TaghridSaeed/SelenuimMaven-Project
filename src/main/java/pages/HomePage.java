@@ -22,7 +22,6 @@ public class HomePage {
     /// //////////Actions///////////
     @Step("Navigate to {URL}")
     public HomePage navigate() {
-//        driver.get(URL);
         BrowserActions.navigate(driver, URL);
         return this;
     }
