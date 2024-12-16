@@ -111,7 +111,6 @@ public class Tests {
                 .AssertSearchedProducts();
     }
 
-
     @Test(description = "ADD to Cart")
     @Description("Add Products in Cart")
     public void AddProductsinCart() {
@@ -172,7 +171,7 @@ public class Tests {
     @AfterMethod
     public void tearDown() {
 
-//        driver.quit();
+        driver.quit();
 
     }
 }
