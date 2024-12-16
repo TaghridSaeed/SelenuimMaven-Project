@@ -4,11 +4,17 @@ This is a Test Automation Project utilizing Selenium WebDriver, TestNG, Maven, a
 
 # Key Features
 -Test Automation Framework: Built using Selenium WebDriver and TestNG for scalable and reliable automation.
+
 -Dependency Management: Maven is used to handle dependencies and build configurations.
+
 -Reporting: Allure framework provides detailed and visually rich test execution reports.
+
 -Configurable Setup: Supports browser configuration and parameterization through properties files.
+
 -Page Object Model (POM): Enhances code reusability and maintainability by organizing web elements and actions into dedicated classes.
+
 -Object-Oriented Design: The framework adheres to OOP principles like abstraction, encapsulation, and inheritance for modular design.
+
 -Fluent Design Pattern: Implements a fluent interface for intuitive and readable test case implementation.
 
 # Key Test Scenarios
