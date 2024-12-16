@@ -35,15 +35,20 @@ public class Tests {
         new MainMenu(driver).clickOnSignupButton();
         new SignupPage(driver)
 //                .assertSignupPage()
-                .SignupNewUser(testData.getTestData("SignUp.UserName"), testData.getTestData("SignUp.Email"));
-        new EnterAccountInformation(driver).assertSignupPage()
+                .SignupNewUser(testData.getTestData("SignUp.UserName"),
+                        testData.getTestData("SignUp.Email"));
+        new EnterAccountInformation(driver)
+                .assertSignupPage()
                 .selectSubscriptionOptions("offersCheckbox")
                 .enterAccountInformation("tagsa221", "22", "January", "2002", "Female")
                 .EnterAddressInformation("Taghreed", "Saeed", "Giza Systems", "ahmed shawky,banafseg 10 ", "United States", "USA", "cairo", "19989", "01020345966");
-        new AccountCreated(driver).AssertAccountCreated()
+        new AccountCreated(driver)
+                .AssertAccountCreated()
                 .ClickOnContinueButton();
-        new MainMenu(driver).ClickDeleteAccButton();
-        new AccountDeleted(driver).AssertAccountDeleted();
+        new MainMenu(driver)
+                .ClickDeleteAccButton();
+        new AccountDeleted(driver)
+                .AssertAccountDeleted();
 
 
     }
@@ -54,20 +59,26 @@ public class Tests {
         new HomePage(driver)
                 .navigate()
                 .assertHomePage();
-        new MainMenu(driver).clickOnSignupButton();
+        new MainMenu(driver)
+                .clickOnSignupButton();
         new SignupPage(driver)
-                .SignupNewUser(testData.getTestData("SignUp.UserName"), testData.getTestData("Login.Email"));
-        new EnterAccountInformation(driver).assertSignupPage()
+                .SignupNewUser(testData.getTestData("SignUp.UserName")
+                        , testData.getTestData("Login.Email"));
+        new EnterAccountInformation(driver)
+                .assertSignupPage()
                 .selectSubscriptionOptions("offersCheckbox")
                 .enterAccountInformation("tagsa221", "22", "January", "2002", "Female")
                 .EnterAddressInformation("Taghreed", "Saeed", "Giza Systems", "ahmed shawky,banafseg 10 ", "United States", "USA", "cairo", "19989", "01020345966");
         new AccountCreated(driver).AssertAccountCreated()
                 .ClickOnContinueButton();
         new MainMenu(driver).clickOnLogOutButton();
-        new SignupPage(driver).Login(testData.getTestData("Login.Email"), testData.getTestData("Login.Password"));
-        new MainMenu(driver).AsserOnLoggedinAsUsername();
-        new MainMenu(driver).ClickDeleteAccButton();
-        new AccountDeleted(driver).AssertAccountDeleted();
+        new SignupPage(driver).Login(testData.getTestData("Login.Email")
+                , testData.getTestData("Login.Password"));
+        new MainMenu(driver)
+                .AsserOnLoggedinAsUsername()
+                .ClickDeleteAccButton();
+        new AccountDeleted(driver)
+                .AssertAccountDeleted();
 
     }
 
@@ -77,11 +88,13 @@ public class Tests {
         new HomePage(driver)
                 .navigate()
                 .assertHomePage();
-        new MainMenu(driver).clickOnProductsButton();
+        new MainMenu(driver)
+                .clickOnProductsButton();
         new ProductsPage(driver)
 //                .AsserOnProductsPageURL()
                 .clickOnViewProductButton();
-        new ProductsDetailsPage(driver).AsserOnProductsDetails();
+        new ProductsDetailsPage(driver)
+                .AsserOnProductsDetails();
 
     }
 
@@ -91,8 +104,10 @@ public class Tests {
         new HomePage(driver)
                 .navigate()
                 .assertHomePage();
-        new MainMenu(driver).clickOnProductsButton();
-        new ProductsPage(driver).SearchOnproduct()
+        new MainMenu(driver)
+                .clickOnProductsButton();
+        new ProductsPage(driver)
+                .SearchOnproduct()
                 .AssertSearchedProducts();
     }
 
@@ -103,16 +118,56 @@ public class Tests {
         new HomePage(driver)
                 .navigate()
                 .assertHomePage();
-        new MainMenu(driver).clickOnProductsButton();
-        new ProductsPage(driver).clickOnAddToCartButton1()
+        new MainMenu(driver)
+                .clickOnProductsButton();
+        new ProductsPage(driver)
+                .clickOnAddToCartButton1()
                 .clickOnContinueShoppingbutton1()
                 .clickOnAddToCartButton2()
                 .clickOnViewCartButton();
-        new ShoppingCart(driver).AsserOnProduct1inCart()
+        new ShoppingCart(driver)
+                .AsserOnProduct1inCart()
                 .AsserOnProduct2inCart();
 
     }
 
+    @Test(description = "PlaceOrder")
+    @Description("Place Order TestCase")
+    public void PlaceOrder() {
+        new HomePage(driver)
+                .navigate()
+                .assertHomePage();
+        new MainMenu(driver).clickOnSignupButton();
+        new SignupPage(driver)
+                .SignupNewUser(testData.getTestData("SignUp.UserName"), testData.getTestData("SignUp.Email"));
+        new EnterAccountInformation(driver).assertSignupPage()
+                .selectSubscriptionOptions("offersCheckbox")
+                .enterAccountInformation("tagsa221", "22", "January", "2002", "Female")
+                .EnterAddressInformation("Taghreed", "Saeed", "Giza Systems", "ahmed shawky,banafseg 10 ", "United States", "USA", "cairo", "19989", "01020345966");
+        new AccountCreated(driver)
+                .AssertAccountCreated()
+                .ClickOnContinueButton();
+        new MainMenu(driver)
+                .AsserOnLoggedinAsUsername()
+                .clickOnProductsButton();
+        new ProductsPage(driver)
+                .clickOnAddToCartButton1()
+                .clickOnContinueShoppingbutton1()
+                .clickOnAddToCartButton2()
+                .clickOnViewCartButton();
+        new ShoppingCart(driver)
+                .AsserOnProduct1inCart()
+                .AsserOnProduct2inCart()
+                .clickOnProceedToCheckoutbutton();
+        new Checkout(driver)
+                .clickOnPlaceOrderButton();
+        new Payment(driver)
+                .enterPaymentInfo()
+                .clickOnConfirmOrderButton();
+        new OrderPlaced(driver)
+                .AssertOrderPlaced();
+
+    }
 
     @AfterMethod
     public void tearDown() {

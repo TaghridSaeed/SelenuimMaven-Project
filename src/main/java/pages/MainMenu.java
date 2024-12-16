@@ -44,11 +44,11 @@ public class MainMenu {
     }
 
     @Step("Assert On LogOut Button")
-    public void AsserOnLoggedinAsUsername() {
+    public MainMenu AsserOnLoggedinAsUsername() {
 
         Assert.assertEquals((driver.findElement(LoginTextToVerify).getText()),
                 "Logged in as Taghreed Saeed");
-
+        return this;
     }
 
 }

@@ -31,34 +31,38 @@ public class ProductsPage {
     @Step("Search on product")
     public ProductsPage SearchOnproduct() {
         driver.findElement(SearchBar).sendKeys("Blue Top");
-        driver.findElement(SearchButton).click();
+        ElementActions.click(driver, SearchButton);
+//        driver.findElement(SearchButton).click();
 
         return this;
     }
 
     @Step("Click On Add To Cart Button for 1 item")
     public ProductsPage clickOnAddToCartButton1() {
-        ElementActions.click(driver,AddtoCartbuttonItem1);
+        ElementActions.click(driver, AddtoCartbuttonItem1);
         return this;
     }
 
     @Step("Click On Add To Cart Button 2 item")
     public ProductsPage clickOnAddToCartButton2() {
-        ElementActions.click(driver,AddtoCartbuttonItem2);
+        ElementActions.click(driver, AddtoCartbuttonItem2);
         return this;
     }
+
     @Step("Click On click On Continue Shopping button1")
     public ProductsPage clickOnContinueShoppingbutton1() {
-        ElementActions.click(driver,ContinueShoppingbuttonItem1);
+        ElementActions.click(driver, ContinueShoppingbuttonItem1);
         return this;
 
     }
+
     @Step("Click On View Cart Button")
     public ProductsPage clickOnViewCartButton() {
-        ElementActions.click(driver,ViewCartButton);
+        ElementActions.click(driver, ViewCartButton);
         return this;
 
     }
+
     @Step("Assert On Searched Products")
     public void AssertSearchedProducts() {
         Assert.assertEquals((driver.findElement(SearchedProductsText).getText()),
