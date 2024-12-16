@@ -32,8 +32,6 @@ public class ProductsPage {
     public ProductsPage SearchOnproduct() {
         driver.findElement(SearchBar).sendKeys("Blue Top");
         ElementActions.click(driver, SearchButton);
-//        driver.findElement(SearchButton).click();
-
         return this;
     }
 

@@ -16,6 +16,7 @@ public class Tests {
 
     @BeforeSuite
     public void BeforeSuite() {
+
         PropertiesReader.loadProperties();
     }
 
@@ -91,7 +92,7 @@ public class Tests {
         new MainMenu(driver)
                 .clickOnProductsButton();
         new ProductsPage(driver)
-//                .AsserOnProductsPageURL()
+                .AsserOnProductsPageURL()
                 .clickOnViewProductButton();
         new ProductsDetailsPage(driver)
                 .AsserOnProductsDetails();
