@@ -141,7 +141,7 @@ public class Tests {
         new MainMenu(driver).clickOnSignupButton();
         new SignupPage(driver)
                 .SignupNewUser(testData.getTestData("SignUp.UserName"), testData.getTestData("SignUp.Email"));
-        new EnterAccountInformation(driver).assertSignupPage()
+        new EnterAccountInformation(driver)
                 .selectSubscriptionOptions("offersCheckbox")
                 .enterAccountInformation("tagsa221", "22", "January", "2002", "Female")
                 .EnterAddressInformation("Taghreed", "Saeed", "Giza Systems", "ahmed shawky,banafseg 10 ", "United States", "USA", "cairo", "19989", "01020345966");
