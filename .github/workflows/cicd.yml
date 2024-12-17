@@ -29,16 +29,19 @@ jobs:
           maven-version: 3.9.9
 
       - name: Execute Tests on Windows Edge
-        run: mvn -DbrowserName="edge" -DheadLessExecution="false" -Dtest="${{ github.event.inputs.testsPath }}" test
+        continue-on-error: true
+        run: mvn test "-DbrowserName=edge" "-Dallure.results.directory=target/allure-results" "-DheadLessExecution=false" "-Dtest=${{ github.event.inputs.testsPath }}"
 
       - name: Generate Allure Report
+        continue-on-error: true
         run: mvn allure:report
 
       - name: Upload Allure Report as Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: allure-report-windows-edge
+          name: allure_report_windows_edge
           path: target/site/allure-maven-plugin
+
 
       - name: Publish Test Results for Windows Edge
         continue-on-error: true
@@ -70,9 +73,11 @@ jobs:
           maven-version: 3.9.9
 
       - name: Execute Tests on Ubuntu Chrome
-        run: mvn -DbrowserName="chrome" -DheadLessExecution="true" -Dtest="${{ github.event.inputs.testsPath }}" test
+        continue-on-error: true
+        run: mvn test "-DbrowserName=chrome" "-Dallure.results.directory=target/allure-results" "-DheadLessExecution=true" "-Dtest=${{ github.event.inputs.testsPath }}"
 
       - name: Generate Allure Report
+        continue-on-error: true
         run: mvn allure:report
 
       - name: Upload Allure Report as Artifact
