@@ -7,90 +7,85 @@ on:
         description: 'Path to Tests to be Executed'
         default: ''
 
-  jobs:
-    E2E_TestWindows:
-      runs-on: windows-latest
-      permissions:
-        checks: write
+jobs:
+  E2E_TestWindows:
+    runs-on: windows-latest
+    permissions:
+      checks: write
 
-      steps:
-        - name: Checkout Code
-          uses: actions/checkout@v4
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-        - name: Setup Java JDK
-          uses: actions/setup-java@v4
-          with:
-          distribution: 'zulu' # See 'Supported distributions' for available options
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
           java-version: '21'
 
-        - name: Setup Maven
-          uses: stCarolas/setup-maven@v5
-          with:
-            maven-version: 3.9.9mvn
+      - name: Setup Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.9
 
-        - name: Execute Tests
-          run: mvn -DbrowserName="edge" -DheadLessExecution="false" -Dtest="${{ github.event.inputs.testsPath }}" test
+      - name: Execute Tests on Windows Edge
+        run: mvn -DbrowserName="edge" -DheadLessExecution="false" -Dtest="${{ github.event.inputs.testsPath }}" test
 
-        - name: Allure Report for windows-edge
-          continue-on-error: true
-          run: mvn -DbrowserName="edge" -DheadLessExecution="false" -Dtest="${{ github.event.inputs.testsPath }}" test
+      - name: Generate Allure Report
+        run: mvn allure:report
 
-        - name: Upload Allure Report as Artifact
-          uses: actions/upload-artifact@v3
-          with:
-            name: allure-report-windows-edge
-            path: target/site/allure-maven-plugin
+      - name: Upload Allure Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report-windows-edge
+          path: target/site/allure-maven-plugin
 
-        - name: Publish Report windows edge
-          continue-on-error: true
-          uses: dorny/test-reporter@v1
-          if: success() || failure()
-          with:
-            name: Tests Report windows-edge
-            path: 'target/surefire-reports/TEST-*.xml'
-            reporter: java-junit
+      - name: Publish Test Results for Windows Edge
+        continue-on-error: true
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: Tests Report Windows-Edge
+          path: 'target/surefire-reports/TEST-*.xml'
+          reporter: java-junit
 
+  E2E_TestUbuntu:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
 
-    E2E_TestUbuntu:
-      runs-on: ubuntu-latest
-      permissions:
-        checks: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      steps:
-        - name: Checkout Code
-          uses: actions/checkout@v4
-
-        - name: Setup Java JDK
-          uses: actions/setup-java@v4
-          with:
-          distribution: 'zulu' # See 'Supported distributions' for available options
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
           java-version: '21'
 
-        - name: Setup Maven
-          uses: stCarolas/setup-maven@v5
-          with:
-            maven-version: 3.9.9mvn
+      - name: Setup Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.9
 
-        - name: Execute Tests
-          run: mvn -DbrowserName="chrome" -DheadLessExecution="true" -Dtest="${{ github.event.inputs.testsPath }}" test
+      - name: Execute Tests on Ubuntu Chrome
+        run: mvn -DbrowserName="chrome" -DheadLessExecution="true" -Dtest="${{ github.event.inputs.testsPath }}" test
 
-        - name: Allure Report for ubuntu chrome
-          continue-on-error: true
-          run: mvn -DbrowserName="chrome" -DheadLessExecution="true" -Dtest="${{ github.event.inputs.testsPath }}" test
+      - name: Generate Allure Report
+        run: mvn allure:report
 
-        - name: Upload Allure Report as Artifact
-          uses: actions/upload-artifact@v3
-          with:
-            name: allure-report-ubuntu-chrome
-            path: target/site/allure-maven-plugin
+      - name: Upload Allure Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report-ubuntu-chrome
+          path: target/site/allure-maven-plugin
 
-        - name: Publish Report ubuntu-chrome
-          continue-on-error: true
-          uses: dorny/test-reporter@v1
-          if: success() || failure()
-          with:
-            name: Tests Report ubuntu-chrome
-            path: 'target/surefire-reports/TEST-*.xml'
-            reporter: java-junit
-
-
+      - name: Publish Test Results for Ubuntu Chrome
+        continue-on-error: true
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: Tests Report Ubuntu-Chrome
+          path: 'target/surefire-reports/TEST-*.xml'
+          reporter: java-junit
