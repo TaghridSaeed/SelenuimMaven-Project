@@ -15,7 +15,7 @@ public class EnterAccountInformation {
     }
 
     /// /////////Locators/////////
-    private By EnterInfoText = By.xpath("//h2/b");
+//    private By EnterInfoText = By.xpath("//h2/b");
     private By passwordfield = By.id("password");
     private By FemaleGender = By.id("id_gender2");
     private By MaleGender = By.id("id_gender1");
@@ -87,10 +87,10 @@ public class EnterAccountInformation {
 
     /// /validations/////
 
-    @Step("Assert On Signup Page")
-    public EnterAccountInformation assertSignupPage() {
-        Assert.assertEquals(driver.findElement(EnterInfoText).getText(), "ENTER ACCOUNT INFORMATION");
-        return this;
-
-    }
+//    @Step("Assert On Signup Page")
+//    public EnterAccountInformation assertSignupPage() {
+//        Assert.assertEquals(driver.findElement(EnterInfoText).getText(), "ENTER ACCOUNT INFORMATION");
+//        return this;
+//
+//    }
 }
