@@ -8,7 +8,7 @@ on:
         default: ''
 
   jobs:
-    windows_edge:
+    E2E_TestWindows:
       runs-on: windows-latest
       permissions:
         checks: write
@@ -51,7 +51,7 @@ on:
             reporter: java-junit
 
 
-    ubuntu_chrome:
+    E2E_TestUbuntu:
       runs-on: ubuntu-latest
       permissions:
         checks: write
