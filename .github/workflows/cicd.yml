@@ -8,7 +8,7 @@ on:
         default: ''
 
   jobs:
-    windows-edge:
+    windows_edge:
       runs-on: windows-latest
       permissions:
         checks: write
@@ -41,7 +41,7 @@ on:
             name: allure-report-windows-edge
             path: target/site/allure-maven-plugin
 
-        - name: Publish Report windows-edge
+        - name: Publish Report windows edge
           continue-on-error: true
           uses: dorny/test-reporter@v1
           if: success() || failure()
@@ -51,7 +51,7 @@ on:
             reporter: java-junit
 
 
-    ubuntu-chrome:
+    ubuntu_chrome:
       runs-on: ubuntu-latest
       permissions:
         checks: write
@@ -74,7 +74,7 @@ on:
         - name: Execute Tests
           run: mvn -DbrowserName="chrome" -DheadLessExecution="true" -Dtest="${{ github.event.inputs.testsPath }}" test
 
-        - name: Allure Report for ubuntu-chrome
+        - name: Allure Report for ubuntu chrome
           continue-on-error: true
           run: mvn -DbrowserName="chrome" -DheadLessExecution="true" -Dtest="${{ github.event.inputs.testsPath }}" test
 
