@@ -11,7 +11,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 12 * * *'
+    - cron: '25 14 * * *'
 
 jobs:
   E2E_TestWindows:
