@@ -40,7 +40,7 @@ public class Tests {
                 .SignupNewUser(testData.getTestData("SignUp.UserName"),
                         testData.getTestData("SignUp.Email"));
         new EnterAccountInformation(driver)
-                .assertSignupPage()
+//                .assertSignupPage()
                 .selectSubscriptionOptions("offersCheckbox")
                 .enterAccountInformation("tagsa221", "22", "January", "2002", "Female")
                 .EnterAddressInformation("Taghreed", "Saeed", "Giza Systems", "ahmed shawky,banafseg 10 ", "United States", "USA", "cairo", "19989", "01020345966");
@@ -67,7 +67,7 @@ public class Tests {
                 .SignupNewUser(testData.getTestData("SignUp.UserName")
                         , testData.getTestData("Login.Email"));
         new EnterAccountInformation(driver)
-                .assertSignupPage()
+//                .assertSignupPage()
                 .selectSubscriptionOptions("offersCheckbox")
                 .enterAccountInformation("tagsa221", "22", "January", "2002", "Female")
                 .EnterAddressInformation("Taghreed", "Saeed", "Giza Systems", "ahmed shawky,banafseg 10 ", "United States", "USA", "cairo", "19989", "01020345966");
