@@ -23,7 +23,8 @@ public class Tests {
     @BeforeMethod
     public void SetUp() {
 //        driver = DriverFactory.initiateDriver();
-        driver = DriverFactory.initiateDriver(System.getProperty("browserName"), true, false);
+        driver = DriverFactory.initiateDriver(System.getProperty("browserName"),
+                Boolean.parseBoolean(System.getProperty("maximizeWindow")), Boolean.parseBoolean(System.getProperty("headLessExecution")));
         testData = new JsonFileManager("src/test/resources/TestDataJsonFiles/SignUpTestsJsonFile.json");
     }
 
@@ -175,4 +176,6 @@ public class Tests {
         driver.quit();
 
     }
+
+
 }
