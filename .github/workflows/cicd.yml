@@ -7,6 +7,12 @@ on:
         description: 'Path to Tests to be Executed'
         default: ''
 
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '0 12 * * *'
+
 jobs:
   E2E_TestWindows:
     runs-on: windows-latest
