@@ -7,8 +7,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-import java.time.Duration;
-
 public class DriverFactory {
     static WebDriver driver;
 
@@ -44,7 +42,6 @@ public class DriverFactory {
             driver.manage().window().maximize();
             System.out.println("Window is maximized,And the new window size is:" + driver.manage().window().getSize());
         }
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         return driver;
 
     }
