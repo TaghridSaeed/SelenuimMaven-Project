@@ -38,7 +38,7 @@ public class Tests {
         new SignupPage(driver)
 //                .assertSignupPage()
                 .SignupNewUser(testData.getTestData("SignUp.UserName"),
-                        testData.getTestData("SignUp.Email"));
+                        testData.getTestData("SignUp.Email")+System.currentTimeMillis()+"@gmail.com");
         new EnterAccountInformation(driver)
 //                .assertSignupPage()
                 .selectSubscriptionOptions("offersCheckbox")
